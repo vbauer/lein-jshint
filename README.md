@@ -3,7 +3,7 @@ lein-jshint
 
 A Leiningen plugin that allows to do static analysis for JavaScript files.
 
-It helps to detect errors and potential problems in your JavaScript code and based on [JSHint](https://github.com/jshint/jshint)
+It helps to detect errors and potential problems in your JavaScript code and based on [JSHint](https://github.com/jshint/jshint).
 
 
 Pre-requirements
@@ -69,7 +69,7 @@ You can use both variants to specify keys: string values or keywords.
 
 All available parameters are described in the official documentation here: http://www.jshint.com/docs/options/
 
-Example configuration:
+Configuration example:
 ```clojure
 :jshint {
   :includes ["resources/public/js/*.js"]
