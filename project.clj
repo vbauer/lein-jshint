@@ -1,4 +1,4 @@
-(defproject lein-jshint "0.1.0-SNAPSHOT"
+(defproject lein-jshint "0.1.0"
   :description "A Leiningen plugin that allows to do static analysis for JavaScript files."
   :url "https://github.com/vbauer/lein-jshint"
   :license {:name "Eclipse Public License"
