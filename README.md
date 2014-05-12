@@ -21,6 +21,7 @@ To enable lein-jshint for your project, put the following in the :plugins vector
 
 ![latest-version](https://clojars.org/lein-jshint/latest-version.svg)
 
+[![Build Status](https://travis-ci.org/vbauer/lein-jshint.svg?branch=master)](https://travis-ci.org/vbauer/lein-jshint)
 [![Dependencies Status](http://jarkeeper.com/vbauer/lein-jshint/status.png)](http://jarkeeper.com/vbauer/lein-jshint)
 
 To enable this plugin in compile stage, use the following hook:
