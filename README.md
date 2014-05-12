@@ -2,7 +2,8 @@ lein-jshint
 ===========
 
 A Leiningen plugin that allows to do static analysis for JavaScript files.
-It is based on [JSHint](https://github.com/jshint/jshint).
+
+It helps to detect errors and potential problems in your JavaScript code and based on [JSHint](https://github.com/jshint/jshint)
 
 
 Pre-requirements
@@ -52,14 +53,19 @@ You can also specify JS files that should be excluded from checking:
 
 To specify *:includes* and *:excludes* options it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.
 
-It is possible to configure JSHint rules with:
+JSHint rules could be configured with *:config* parameter:
 ```clojure
-:config {:node true
+; It specifies which JSHint options to turn on or off
+:config {:globals {:angular true
+                   :console true
+                   "$" true}
+         :node true
          :es5 true
          :eqeqeq true
          ...}
 ```
-You can use both variants for keys: string values or keyword.
+
+You can use both variants to specify keys: string values or keywords.
 
 All available parameters are described in the official documentation here: http://www.jshint.com/docs/options/
 
@@ -68,10 +74,9 @@ Example configuration:
 :jshint {
   :includes ["resources/public/js/*.js"]
   :excludes ["resources/public/js/directives.js"]
-  :config {:globals {:angular true
-                     :console true
-                     "$" true}
-           :bitwise    true    ; Prohibit bitwise operators (&, |, ^, etc.)
+
+  ; This configuration is used by default
+  :config {:bitwise    true    ; Prohibit bitwise operators (&, |, ^, etc.)
            :curly      true    ; Require {} for every new block or scope
            :eqeqeq     true    ; Require triple equals i.e. ===
            :forin      true    ; Tolerate "for in" loops without hasOwnPrototype
