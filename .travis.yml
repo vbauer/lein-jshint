@@ -4,4 +4,6 @@ script: lein2 uberjar
 jdk:
   - openjdk7
   - openjdk6
+  - oraclejdk6
+  - oraclejdk7
 
