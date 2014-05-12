@@ -50,6 +50,8 @@ You can also specify JS files that should be excluded from checking:
 :jshint { :includes ["resources/public/lib/*.js"] }
 ```
 
+To specify *:includes* and *:excludes* options it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.
+
 It is possible to configure JSHint rules with:
 ```clojure
 :config {:node true

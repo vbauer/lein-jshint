@@ -50,7 +50,7 @@
 (defn- config-file [project] (opt project :config-file DEF_CONFIG_FILE))
 (defn- ignore-file [project] (opt project :ignore-file DEF_IGNORE_FILE))
 (defn- include-files [project] (find-files (vec (opt project :includes nil))))
-(defn- exclude-files [project] (vec (opt project :excludes nil)))
+(defn- exclude-files [project] (find-files (vec (opt project :excludes nil))))
 
 
 ; Internal API: Runner
