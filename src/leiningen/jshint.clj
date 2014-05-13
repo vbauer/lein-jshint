@@ -68,6 +68,11 @@
         content (joine excludes)]
     (create-tmp-file (ignore-file project) content)))
 
+(defn- sources-list [project args]
+  (let [includes (include-files project)
+        excludes (exclude-files project)]
+    (remove empty? (concat (apply vec args) includes))))
+
 (defn- invoke [project & args]
   (process/exec
    (project :root)
@@ -78,13 +83,12 @@
     (npm/environmental-consistency project)
     (let [file (config-file project)
           content (generate-config-file project)
-          includes (include-files project)
-          sources (remove empty? (concat (apply vec args) includes))]
+          sources (sources-list project args)]
       (npm/with-json-file file content project
                           (generate-exclude-files project)
                           (apply invoke project sources)))
     (catch Throwable t
-      (println (joine "Can't execute jshint application."
+      (println (joine (str "Can't execute jshint application: " (.getMessage t))
                       "Check that JSHint is:"
                       " - installed correctly: npm install jshint -g"
                       " - configured correctly: https://github.com/vbauer/lein-jshint.git"))
