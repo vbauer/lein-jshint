@@ -48,7 +48,7 @@ You can specify where JS files will be located with:
 
 You can also specify JS files that should be excluded from checking:
 ```clojure
-:jshint { :includes ["resources/public/lib/*.js"] }
+:jshint { :excludes ["resources/public/lib/*.js"] }
 ```
 
 To specify *:includes* and *:excludes* options it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.
