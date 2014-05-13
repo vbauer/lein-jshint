@@ -69,8 +69,7 @@
     (create-tmp-file (ignore-file project) content)))
 
 (defn- sources-list [project args]
-  (let [includes (include-files project)
-        excludes (exclude-files project)]
+  (let [includes (include-files project)]
     (remove empty? (concat (apply vec args) includes))))
 
 (defn- invoke [project & args]
