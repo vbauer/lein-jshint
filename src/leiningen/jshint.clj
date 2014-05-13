@@ -2,6 +2,7 @@
   leiningen.jshint
   (:require [leiningen.npm :as npm]
             [leiningen.npm.process :as process]
+            [leiningen.core.main :as main]
             [leiningen.help :as help]
             [leiningen.compile]
             [cheshire.core :as json]
@@ -19,6 +20,9 @@
   (doto (io/file file)
     (spit content)
     (.deleteOnExit)))
+
+(defn joine [& data]
+  (string/join "\r\n" data))
 
 
 ; Internal API: Configuration
@@ -61,7 +65,7 @@
 
 (defn- generate-exclude-files [project]
   (let [excludes (exclude-files project)
-        content (string/join "\r\n" excludes)]
+        content (joine excludes)]
     (create-tmp-file (ignore-file project) content)))
 
 (defn- invoke [project & args]
@@ -70,14 +74,21 @@
    (cons "jshint" args)))
 
 (defn- proc [project & args]
-  (npm/environmental-consistency project)
-  (let [file (config-file project)
-        content (generate-config-file project)
-        includes (include-files project)
-        sources (remove empty? (concat (apply vec args) includes))]
-    (npm/with-json-file file content project
-                        (generate-exclude-files project)
-                        (apply invoke project sources))))
+  (try
+    (npm/environmental-consistency project)
+    (let [file (config-file project)
+          content (generate-config-file project)
+          includes (include-files project)
+          sources (remove empty? (concat (apply vec args) includes))]
+      (npm/with-json-file file content project
+                          (generate-exclude-files project)
+                          (apply invoke project sources)))
+    (catch Throwable t
+      (println (joine "Can't execute jshint application."
+                      "Check that JSHint is:"
+                      " - installed correctly: npm install jshint -g"
+                      " - configured correctly: https://github.com/vbauer/lein-jshint.git"))
+      (main/abort))))
 
 
 ; External API: Task
