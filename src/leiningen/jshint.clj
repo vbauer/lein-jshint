@@ -87,10 +87,11 @@
                           (generate-exclude-files project)
                           (apply invoke project sources)))
     (catch Throwable t
-      (println (joine (str "Can't execute jshint application: " (.getMessage t))
-                      "Check that JSHint is:"
-                      " - installed correctly: npm install jshint -g"
-                      " - configured correctly: https://github.com/vbauer/lein-jshint.git"))
+      (println
+       (joine (str "Can't execute jshint application: " (.getMessage t))
+              "Something is wrong:"
+              " - installation: npm install jshint -g"
+              " - configuration: https://github.com/vbauer/lein-jshint"))
       (main/abort))))
 
 
