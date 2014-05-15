@@ -3,7 +3,7 @@ lein-jshint
 
 A Leiningen plugin that allows to do static analysis for JavaScript files.
 
-It helps to detect errors and potential problems in your JavaScript code and based on [JSHint](https://github.com/jshint/jshint).
+It helps to detect errors and potential problems in your JavaScript code and is based on [JSHint](https://github.com/jshint/jshint).
 
 
 Pre-requirements
@@ -38,7 +38,7 @@ lien-jshint will create two files in runtime to setup configuration:
 - [.jshintrc](https://github.com/jshint/jshint/blob/2.x/examples/.jshintrc) - main JSHint configuration
 - [.jshintignore](https://github.com/jshint/jshint/blob/2.x/examples/.jshintignore) - list of files for ignoring
 
-You can specify where JS files will be located with:
+You can specify place, where JS files will be located with:
 ```clojure
 :jshint {
   :includes ["resources/public/js/*.js"
@@ -51,7 +51,7 @@ You can also specify JS files that should be excluded from checking:
 :jshint { :excludes ["resources/public/lib/*.js"] }
 ```
 
-To specify *:includes* and *:excludes* options it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.
+To specify *:includes* and *:excludes* options, it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.
 
 JSHint rules could be configured with *:config* parameter:
 ```clojure
