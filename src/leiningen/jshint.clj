@@ -4,9 +4,7 @@
             [leiningen.npm.process :as process]
             [leiningen.core.main :as main]
             [leiningen.help :as help]
-            [leiningen.compile]
             [cheshire.core :as json]
-            [robert.hooke :as hooke]
             [org.satta.glob :as glob]
             [clojure.java.io :as io]
             [clojure.string :as string]))
@@ -27,6 +25,8 @@
 
 ; Internal API: Configuration
 
+(def ^:private DEF_JSHINT_CMD "jshint")
+(def ^:private DEF_JSHINT_DIR "node_modules/jshint/bin/")
 (def ^:private DEF_CONFIG_FILE ".jshintrc")
 (def ^:private DEF_IGNORE_FILE ".jshintignore")
 (def ^:private DEF_CONFIG
@@ -73,9 +73,10 @@
     (remove empty? (concat (apply vec args) includes))))
 
 (defn- invoke [project & args]
-  (process/exec
-   (project :root)
-   (cons "jshint" args)))
+  (let [root (:root project)
+        local (str DEF_JSHINT_DIR DEF_JSHINT_CMD)
+        cmd (if (.exists (io/file local)) local DEF_JSHINT_CMD)]
+    (process/exec root (cons cmd args))))
 
 (defn- proc [project & args]
   (try
@@ -101,15 +102,5 @@
   "Invoke the JSHint, Static analysis tool for JavaScript"
   [project & args]
   (if (= args ["help"])
-    (println (help/help-for "jshint"))
+    (println (help/help-for DEF_JSHINT_CMD))
     (proc project args)))
-
-
-; External API: Hooks
-
-(defn check-hook [f & args]
-  (apply f args)
-  (proc (first args)))
-
-(defn activate []
-  (hooke/add-hook #'leiningen.compile/compile #'check-hook))

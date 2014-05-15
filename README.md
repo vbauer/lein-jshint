@@ -9,9 +9,15 @@ It helps to detect errors and potential problems in your JavaScript code and is 
 Pre-requirements
 ================
 
-Install [JSHint](https://www.npmjs.org/package/jshint) to use lein-jshint plugin:
+Install [NodeJS](http://nodejs.org/) and [NPM](https://github.com/npm/npm) (package manager for Node) to install JSHint:
+
+On Ubuntu:
 ```
-npm install jshint -g
+sudo apt-get install nodejs
+```
+On Mac OS X:
+```
+brew install node
 ```
 
 
@@ -25,9 +31,28 @@ To enable lein-jshint for your project, put the following in the :plugins vector
 [![Build Status](https://travis-ci.org/vbauer/lein-jshint.svg?branch=master)](https://travis-ci.org/vbauer/lein-jshint)
 [![Dependencies Status](http://jarkeeper.com/vbauer/lein-jshint/status.png)](http://jarkeeper.com/vbauer/lein-jshint)
 
+Install [JSHint](https://www.npmjs.org/package/jshint) to use lein-jshint plugin. It could be done in few ways:
+
+- Use NPM to install JSHint globally:
+```
+npm install jshint -g
+```
+- You can also install JSHint in the current directory:
+```
+npm install jslint
+```
+- Use [lein-npm](https://github.com/bodil/lein-npm) plugin:
+```
+lein npm install
+```
+- Use just Leiningen:
+```
+lein deps
+```
+
 To enable this plugin in compile stage, use the following hook:
 ```clojure
-:hooks [leiningen.jshint]
+:hooks [lein-jshint.plugin]
 ```
 
 
