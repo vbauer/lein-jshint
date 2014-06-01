@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>lein-jshint by vbauer</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/vbauer/lein-jshint">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/vbauer/lein-jshint/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/vbauer/lein-jshint/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>lein-jshint</h1>
+          <p>A Leiningen plugin for running javascript code through JSHint</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/vbauer">vbauer</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="lein-jshint" class="anchor" href="#lein-jshint"><span class="octicon octicon-link"></span></a>lein-jshint</h1>
+
+<p>A Leiningen plugin that allows to do static analysis for JavaScript files.</p>
+
+<p>It helps to detect errors and potential problems in your JavaScript code and is based on <a href="https://github.com/jshint/jshint">JSHint</a>.</p>
+
+<h1>
+<a name="pre-requirements" class="anchor" href="#pre-requirements"><span class="octicon octicon-link"></span></a>Pre-requirements</h1>
+
+<p>Install <a href="http://nodejs.org/">NodeJS</a> and <a href="https://github.com/npm/npm">NPM</a> (package manager for Node) to install JSHint:</p>
+
+<p>On Ubuntu:</p>
+
+<pre><code>sudo apt-get install nodejs
+</code></pre>
+
+<p>On Mac OS X:</p>
+
+<pre><code>brew install node
+</code></pre>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:</p>
+
+<p><img src="https://clojars.org/lein-jshint/latest-version.svg" alt="latest-version"></p>
+
+<p><a href="https://travis-ci.org/vbauer/lein-jshint"><img src="https://travis-ci.org/vbauer/lein-jshint.svg?branch=master" alt="Build Status"></a>
+<a href="http://jarkeeper.com/vbauer/lein-jshint"><img src="http://jarkeeper.com/vbauer/lein-jshint/status.png" alt="Dependencies Status"></a></p>
+
+<p>Install <a href="https://www.npmjs.org/package/jshint">JSHint</a> to use lein-jshint plugin. It could be done in few ways:</p>
+
+<ul>
+<li>Use NPM to install JSHint globally:</li>
+</ul><pre><code>npm install jshint -g
+</code></pre>
+
+<ul>
+<li>You can also install JSHint in the current directory:</li>
+</ul><pre><code>npm install jslint
+</code></pre>
+
+<ul>
+<li>Use <a href="https://github.com/bodil/lein-npm">lein-npm</a> plugin:</li>
+</ul><pre><code>lein npm install
+</code></pre>
+
+<ul>
+<li>Use just Leiningen:</li>
+</ul><pre><code>lein deps
+</code></pre>
+
+<p>To enable this plugin in compile stage, use the following hook:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="ss">:hooks</span> <span class="p">[</span><span class="nv">lein-jshint.plugin</span><span class="p">]</span>
+</pre></div>
+
+<h1>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h1>
+
+<p>lien-jshint will create two files in runtime to setup configuration:</p>
+
+<ul>
+<li>
+<a href="https://github.com/jshint/jshint/blob/2.x/examples/.jshintrc">.jshintrc</a> - main JSHint configuration</li>
+<li>
+<a href="https://github.com/jshint/jshint/blob/2.x/examples/.jshintignore">.jshintignore</a> - list of files for ignoring</li>
+</ul><p>You can specify place, where JS files will be located with:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="ss">:jshint</span> <span class="p">{</span>
+  <span class="ss">:includes</span> <span class="p">[</span><span class="s">"resources/public/js/*.js"</span>
+             <span class="s">"resources/js/*.js"</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You can also specify JS files that should be excluded from checking:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="ss">:jshint</span> <span class="p">{</span> <span class="ss">:excludes</span> <span class="p">[</span><span class="s">"resources/public/lib/*.js"</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+
+<p>To specify <em>:includes</em> and <em>:excludes</em> options, it is possible to use <a href="http://en.wikipedia.org/wiki/Glob_(programming)">Glob Patterns</a>.</p>
+
+<p>JSHint rules could be configured with <em>:config</em> parameter:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="c1">; It specifies which JSHint options to turn on or off</span>
+<span class="ss">:config</span> <span class="p">{</span><span class="ss">:globals</span> <span class="p">{</span><span class="ss">:angular</span> <span class="nv">true</span>
+                   <span class="ss">:console</span> <span class="nv">true</span>
+                   <span class="s">"$"</span> <span class="nv">true</span><span class="p">}</span>
+         <span class="ss">:node</span> <span class="nv">true</span>
+         <span class="ss">:es5</span> <span class="nv">true</span>
+         <span class="ss">:eqeqeq</span> <span class="nv">true</span>
+         <span class="nv">...</span><span class="p">}</span>
+</pre></div>
+
+<p>You can use both variants to specify keys: string values or keywords.</p>
+
+<p>All available parameters are described in the official documentation here: <a href="http://www.jshint.com/docs/options/">http://www.jshint.com/docs/options/</a></p>
+
+<p>Configuration example:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="ss">:jshint</span> <span class="p">{</span>
+  <span class="ss">:includes</span> <span class="p">[</span><span class="s">"resources/public/js/*.js"</span><span class="p">]</span>
+  <span class="ss">:excludes</span> <span class="p">[</span><span class="s">"resources/public/js/directives.js"</span><span class="p">]</span>
+
+  <span class="c1">; This configuration is used by default</span>
+  <span class="ss">:config</span> <span class="p">{</span><span class="ss">:bitwise</span>    <span class="nv">true</span>    <span class="c1">; Prohibit bitwise operators (&amp;, |, ^, etc.)</span>
+           <span class="ss">:curly</span>      <span class="nv">true</span>    <span class="c1">; Require {} for every new block or scope</span>
+           <span class="ss">:eqeqeq</span>     <span class="nv">true</span>    <span class="c1">; Require triple equals i.e. ===</span>
+           <span class="ss">:forin</span>      <span class="nv">true</span>    <span class="c1">; Tolerate "for in" loops without hasOwnPrototype</span>
+           <span class="ss">:immed</span>      <span class="nv">true</span>    <span class="c1">; Require immediate invocations to be wrapped in parens</span>
+           <span class="ss">:latedef</span>    <span class="nv">true</span>    <span class="c1">; Prohibit variable use before definition</span>
+           <span class="ss">:newcap</span>     <span class="nv">true</span>    <span class="c1">; Require capitalization of all constructor functions</span>
+           <span class="ss">:noarg</span>      <span class="nv">true</span>    <span class="c1">; Prohibit use of arguments.caller and arguments.callee</span>
+           <span class="ss">:noempty</span>    <span class="nv">true</span>    <span class="c1">; Prohibit use of empty blocks</span>
+           <span class="ss">:nonew</span>      <span class="nv">true</span>    <span class="c1">; Prohibit use of constructors for side-effects</span>
+           <span class="ss">:plusplus</span>   <span class="nv">true</span>    <span class="c1">; Prohibit use of "++" &amp; "--"</span>
+           <span class="ss">:regexp</span>     <span class="nv">true</span>    <span class="c1">; Prohibit "." and ""[^...]"" in regular expressions</span>
+           <span class="ss">:undef</span>      <span class="nv">true</span>    <span class="c1">; Require all non-global vars be declared before usage</span>
+           <span class="ss">:strict</span>     <span class="nv">true</span>    <span class="c1">; Require "use strict" pragma in every file</span>
+           <span class="ss">:trailing</span>   <span class="nv">true</span>    <span class="c1">; Prohibit trailing whitespaces</span>
+           <span class="p">}}</span>
+</pre></div>
+
+<p>Just for Code Maniacs: <a href="https://gist.github.com/haschek/2595796">JSHint Configuration, Strict Edition</a></p>
+
+<h1>
+<a name="invoking-jshint" class="anchor" href="#invoking-jshint"><span class="octicon octicon-link"></span></a>Invoking JSHint</h1>
+
+<p>It is also possible to invoke JSHint directly using "jshint" task:</p>
+
+<pre><code>lein jshint "resources/js/*.js"
+lein jshint -verbose
+lein jshint --reporter=checkstyle resources/public/js/controllers.js
+</code></pre>
+
+<p>See all CLI commands here: <a href="http://www.jshint.com/docs/cli/">http://www.jshint.com/docs/cli/</a></p>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>Copyright © 2014 Vladislav Bauer</p>
+
+<p>Distributed under the Eclipse Public License, the same as Clojure.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
