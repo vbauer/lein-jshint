@@ -14,7 +14,8 @@
 
 (defn compile-hook [task project & args]
   (let [res (apply task project args)]
-    (jshint/jshint project)))
+    (jshint/jshint project)
+    res))
 
 (defn activate []
   (npm/hooks)
