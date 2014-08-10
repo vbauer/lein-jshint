@@ -13,8 +13,9 @@
 ; External API: Hooks
 
 (defn compile-hook [task project & args]
-  (apply task project args)
-  (jshint/jshint project))
+  (let [res (apply task project args)]
+    (jshint/jshint project)
+    res))
 
 (defn activate []
   (npm/hooks)

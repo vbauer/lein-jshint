@@ -8,9 +8,11 @@
                  [clj-glob "1.0.0" :exclusions [org.clojure/clojure]]
                  [lein-npm "0.4.0" :exclusions [org.clojure/clojure]]]
 
-  :plugins [[lein-release "1.0.5" :exclusions [org.clojure/clojure]]
+  :plugins [[jonase/eastwood "0.1.4" :exclusions [org.clojure/clojure]]
+            [lein-release "1.0.5" :exclusions [org.clojure/clojure]]
             [lein-kibit "0.0.8" :exclusions [org.clojure/clojure]]
-            [lein-bikeshed "0.1.7" :exclusions [org.clojure/clojure]]]
+            [lein-bikeshed "0.1.7" :exclusions [org.clojure/clojure]]
+            [lein-ancient "0.5.5"]]
 
   :eval-in-leiningen true
   :pedantic? :abort
