@@ -144,5 +144,6 @@ Distributed under the Eclipse Public License, the same as Clojure.
 Might also like
 ===============
 
-* [lein-jslint](https://github.com/vbauer/lein-jslint) - a Leiningen plugin for running javascript code through JSLint
-* [lein-plantuml](https://github.com/vbauer/lein-plantuml) - a Leiningen plugin for generating UML diagrams using PluntUML
+* [lein-asciidoc](https://github.com/vbauer/lein-asciidoc) - A Leiningen plugin for generating documentation using Asciidoctor.
+* [lein-jslint](https://github.com/vbauer/lein-jslint) - a Leiningen plugin for running javascript code through JSLint.
+* [lein-plantuml](https://github.com/vbauer/lein-plantuml) - a Leiningen plugin for generating UML diagrams using PluntUML.
