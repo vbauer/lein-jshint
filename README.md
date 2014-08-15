@@ -1,9 +1,9 @@
 lein-jshint
 ===========
 
-A Leiningen plugin that allows to do static analysis for JavaScript files.
+[JSHint](https://github.com/jshint/jshint) is a community-driven tool to detect errors and potential problems in JavaScript code. It is very flexible so you can easily adjust it to your particular coding guidelines and the environment you expect your code to execute in.
 
-It helps to detect errors and potential problems in your JavaScript code and is based on [JSHint](https://github.com/jshint/jshint).
+[lein-jshint](https://github.com/vbauer/lein-jshint) is a Leiningen plugin that allows to do static analysis for JavaScript files using JSHint.
 
 
 Pre-requirements
