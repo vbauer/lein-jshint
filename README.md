@@ -141,6 +141,12 @@ Copyright © 2014 Vladislav Bauer
 Distributed under the Eclipse Public License, the same as Clojure.
 
 
+Thanks to
+=========
+
+JSHint author [Anton Kovalyov](http://anton.kovalyov.net) and other developers who worked on this [great project](https://github.com/jshint/jshint/graphs/contributors)
+
+
 Might also like
 ===============
 
