@@ -133,18 +133,10 @@ lein jshint --reporter=checkstyle resources/public/js/controllers.js
 See all CLI commands here: http://www.jshint.com/docs/cli/
 
 
-License
-=======
-
-Copyright © 2014 Vladislav Bauer
-
-Distributed under the Eclipse Public License, the same as Clojure.
-
-
 Thanks to
 =========
 
-JSHint author [Anton Kovalyov](http://anton.kovalyov.net) and other developers who worked on this [great project](https://github.com/jshint/jshint/graphs/contributors)
+JSHint author [Anton Kovalyov](http://anton.kovalyov.net) and other developers who worked on this [great project](https://github.com/jshint/jshint/graphs/contributors).
 
 
 Might also like
@@ -153,3 +145,11 @@ Might also like
 * [lein-asciidoc](https://github.com/vbauer/lein-asciidoc) - A Leiningen plugin for generating documentation using Asciidoctor.
 * [lein-jslint](https://github.com/vbauer/lein-jslint) - a Leiningen plugin for running javascript code through JSLint.
 * [lein-plantuml](https://github.com/vbauer/lein-plantuml) - a Leiningen plugin for generating UML diagrams using PluntUML.
+
+
+License
+=======
+
+Copyright © 2014 Vladislav Bauer
+
+Distributed under the Eclipse Public License, the same as Clojure.
