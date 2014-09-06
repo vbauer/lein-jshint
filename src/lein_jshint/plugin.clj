@@ -1,28 +1,17 @@
 (ns ^{:author "Vladislav Bauer"}
   lein-jshint.plugin
   (:require [lein-npm.plugin :as npm]
-            [leiningen.jshint :as jshint]
+            [lein-jshint.core :as core]
             [leiningen.compile]
             [robert.hooke :as hooke]))
 
+; Internal API: Configuration
 
 (def ^:private DEF_JSHINT_DEP "jshint")
 (def ^:private DEF_JSHINT_VER ">=2.5.0")
 
 
-; External API: Hooks
-
-(defn compile-hook [task project & args]
-  (let [res (apply task project args)]
-    (jshint/jshint project)
-    res))
-
-(defn activate []
-  (npm/hooks)
-  (hooke/add-hook #'leiningen.compile/compile #'compile-hook))
-
-
-; External API: Middlewares
+; Internal API: Middlewares
 
 (defn- jshint? [dep]
   (= (str (first dep)) DEF_JSHINT_DEP))
@@ -36,7 +25,22 @@
     (if (empty? jshint-matches)
       (conj deps new-dep) deps)))
 
+
+; External API: Middlewares
+
 (defn middleware [project]
   (let [version (get-in project [:jshint :version])]
     (update-in project [:node-dependencies]
                #(vec (ensure-jshint % version)))))
+
+
+; External API: Hooks
+
+(defn compile-hook [task project & args]
+  (let [res (apply task project args)]
+    (core/jshint project args)
+    res))
+
+(defn activate []
+  (npm/hooks)
+  (hooke/add-hook #'leiningen.compile/compile #'compile-hook))

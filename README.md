@@ -39,7 +39,7 @@ npm install jshint -g
 ```
 - You can also install JSHint in the current directory:
 ```
-npm install jslint
+npm install jshint
 ```
 - Use [lein-npm](https://github.com/bodil/lein-npm) plugin:
 ```
@@ -94,7 +94,13 @@ You can use both variants to specify keys: string values or keywords.
 
 All available parameters are described in the official documentation here: http://www.jshint.com/docs/options/
 
-Configuration example:
+
+Examples
+========
+
+Detailed example
+----------------
+
 ```clojure
 :jshint {
   :includes ["resources/public/js/*.js"]
@@ -119,6 +125,12 @@ Configuration example:
            }}
 ```
 Just for Code Maniacs: [JSHint Configuration, Strict Edition](https://gist.github.com/haschek/2595796)
+
+
+Example project
+---------------
+
+Just clone the current repository and try to play with [example project](https://github.com/vbauer/lein-jshint/tree/master/example) for better understanding how to use lein-jshint.
 
 
 Invoking JSHint
