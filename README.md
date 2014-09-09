@@ -27,10 +27,6 @@ brew install node
 Installation
 ============
 
-To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:
-
-![latest-version](https://clojars.org/lein-jshint/latest-version.svg)
-
 Install [JSHint](https://www.npmjs.org/package/jshint) to use lein-jshint plugin. It could be done in few ways:
 
 - Use NPM to install JSHint globally:
@@ -50,10 +46,12 @@ lein npm install
 lein deps
 ```
 
-To enable this plugin in compile stage, use the following hook:
-```clojure
-:hooks [lein-jshint.plugin]
-```
+Setup
+-----
+
+To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:
+
+![latest-version](https://clojars.org/lein-jshint/latest-version.svg)
 
 
 Configuration
@@ -93,6 +91,15 @@ JSHint rules could be configured with *:config* parameter:
 You can use both variants to specify keys: string values or keywords.
 
 All available parameters are described in the official documentation here: http://www.jshint.com/docs/options/
+
+
+Hooks
+-----
+
+To enable this plugin in compile stage, use the following hook:
+```clojure
+:hooks [lein-jshint.plugin]
+```
 
 
 Examples
