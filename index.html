@@ -37,6 +37,9 @@
 
 <p><a href="https://github.com/vbauer/lein-jshint">lein-jshint</a> is a Leiningen plugin that allows to do static analysis for JavaScript files using JSHint.</p>
 
+<p><a href="https://travis-ci.org/vbauer/lein-jshint"><img src="https://travis-ci.org/vbauer/lein-jshint.svg?branch=master" alt="Build Status"></a>
+<a href="http://jarkeeper.com/vbauer/lein-jshint"><img src="http://jarkeeper.com/vbauer/lein-jshint/status.png" alt="Dependencies Status"></a></p>
+
 <h1>
 <a name="pre-requirements" class="anchor" href="#pre-requirements"><span class="octicon octicon-link"></span></a>Pre-requirements</h1>
 
@@ -55,13 +58,6 @@
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:</p>
-
-<p><img src="https://clojars.org/lein-jshint/latest-version.svg" alt="latest-version"></p>
-
-<p><a href="https://travis-ci.org/vbauer/lein-jshint"><img src="https://travis-ci.org/vbauer/lein-jshint.svg?branch=master" alt="Build Status"></a>
-<a href="http://jarkeeper.com/vbauer/lein-jshint"><img src="http://jarkeeper.com/vbauer/lein-jshint/status.png" alt="Dependencies Status"></a></p>
-
 <p>Install <a href="https://www.npmjs.org/package/jshint">JSHint</a> to use lein-jshint plugin. It could be done in few ways:</p>
 
 <ul>
@@ -71,7 +67,7 @@
 
 <ul>
 <li>You can also install JSHint in the current directory:</li>
-</ul><pre><code>npm install jslint
+</ul><pre><code>npm install jshint
 </code></pre>
 
 <ul>
@@ -84,10 +80,12 @@
 </ul><pre><code>lein deps
 </code></pre>
 
-<p>To enable this plugin in compile stage, use the following hook:</p>
+<h2>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
 
-<div class="highlight highlight-clojure"><pre><span class="ss">:hooks</span> <span class="p">[</span><span class="nv">lein-jshint.plugin</span><span class="p">]</span>
-</pre></div>
+<p>To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:</p>
+
+<p><img src="https://clojars.org/lein-jshint/latest-version.svg" alt="latest-version"></p>
 
 <h1>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h1>
@@ -130,7 +128,19 @@
 
 <p>All available parameters are described in the official documentation here: <a href="http://www.jshint.com/docs/options/">http://www.jshint.com/docs/options/</a></p>
 
-<p>Configuration example:</p>
+<h2>
+<a name="hooks" class="anchor" href="#hooks"><span class="octicon octicon-link"></span></a>Hooks</h2>
+
+<p>To enable this plugin in compile stage, use the following hook:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="ss">:hooks</span> <span class="p">[</span><span class="nv">lein-jshint.plugin</span><span class="p">]</span>
+</pre></div>
+
+<h1>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h1>
+
+<h2>
+<a name="detailed-example" class="anchor" href="#detailed-example"><span class="octicon octicon-link"></span></a>Detailed example</h2>
 
 <div class="highlight highlight-clojure"><pre><span class="ss">:jshint</span> <span class="p">{</span>
   <span class="ss">:includes</span> <span class="p">[</span><span class="s">"resources/public/js/*.js"</span><span class="p">]</span>
@@ -157,6 +167,11 @@
 
 <p>Just for Code Maniacs: <a href="https://gist.github.com/haschek/2595796">JSHint Configuration, Strict Edition</a></p>
 
+<h2>
+<a name="example-project" class="anchor" href="#example-project"><span class="octicon octicon-link"></span></a>Example project</h2>
+
+<p>Just clone the current repository and try to play with <a href="https://github.com/vbauer/lein-jshint/tree/master/example">example project</a> for better understanding how to use lein-jshint.</p>
+
 <h1>
 <a name="invoking-jshint" class="anchor" href="#invoking-jshint"><span class="octicon octicon-link"></span></a>Invoking JSHint</h1>
 
@@ -181,9 +196,11 @@ lein jshint --reporter=checkstyle resources/public/js/controllers.js
 <li>
 <a href="https://github.com/asciidoctor/asciidoctor-lein-plugin">lein-asciidoctor</a> - A Leiningen plugin for generating documentation using Asciidoctor.</li>
 <li>
-<a href="https://github.com/vbauer/lein-jslint">lein-jslint</a> - a Leiningen plugin for running javascript code through JSLint.</li>
+<a href="https://github.com/vbauer/lein-plantuml">lein-plantuml</a> - a Leiningen plugin for generating UML diagrams using PlantUML.</li>
 <li>
-<a href="https://github.com/vbauer/lein-plantuml">lein-plantuml</a> - a Leiningen plugin for generating UML diagrams using PluntUML.</li>
+<a href="https://github.com/vbauer/lein-coffeescript">lein-coffeescript</a> - a Leiningen plugin for running CoffeeScript compiler.</li>
+<li>
+<a href="https://github.com/vbauer/lein-jslint">lein-jslint</a> - a Leiningen plugin for running javascript code through JSLint.</li>
 </ul><h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
