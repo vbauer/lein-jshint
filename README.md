@@ -5,6 +5,9 @@ lein-jshint
 
 [lein-jshint](https://github.com/vbauer/lein-jshint) is a Leiningen plugin that allows to do static analysis for JavaScript files using JSHint.
 
+[![Build Status](https://travis-ci.org/vbauer/lein-jshint.svg?branch=master)](https://travis-ci.org/vbauer/lein-jshint)
+[![Dependencies Status](http://jarkeeper.com/vbauer/lein-jshint/status.png)](http://jarkeeper.com/vbauer/lein-jshint)
+
 
 Pre-requirements
 ================
@@ -27,9 +30,6 @@ Installation
 To enable lein-jshint for your project, put the following in the :plugins vector of your project.clj file:
 
 ![latest-version](https://clojars.org/lein-jshint/latest-version.svg)
-
-[![Build Status](https://travis-ci.org/vbauer/lein-jshint.svg?branch=master)](https://travis-ci.org/vbauer/lein-jshint)
-[![Dependencies Status](http://jarkeeper.com/vbauer/lein-jshint/status.png)](http://jarkeeper.com/vbauer/lein-jshint)
 
 Install [JSHint](https://www.npmjs.org/package/jshint) to use lein-jshint plugin. It could be done in few ways:
 
