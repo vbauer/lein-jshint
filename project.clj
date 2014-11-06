@@ -13,8 +13,8 @@
             [lein-bikeshed "0.1.8" :exclusions [org.clojure/clojure]]
             [lein-ancient "0.5.5"]]
 
-  :eval-in-leiningen true
   :pedantic? :abort
+  :eval-in-leiningen true
 
   :local-repo-classpath true
   :lein-release {:deploy-via :clojars
