@@ -22,13 +22,17 @@
     (spit content)
     (.deleteOnExit)))
 
-(defn- error [ex]
+(defn joine [& data]
+  (string/join "\r\n" data))
+
+(defn- error [ex dbg]
+  (if dbg (.printStackTrace ex))
   (println
-   (string/join "\r\n"
-                (str "Can't execute JSHint: " (.getMessage ex))
-                "Something is wrong:"
-                " - installation: npm install jshint -g"
-                " - configuration: https://github.com/vbauer/lein-jshint")))
+   (joine "\r\n"
+          (str "Can't execute JSHint: " (.getMessage ex))
+          "Something is wrong:"
+          " - installation: npm install jshint -g"
+          " - configuration: https://github.com/vbauer/lein-jshint")))
 
 
 ; Internal API: Configuration
@@ -60,6 +64,7 @@
 (defn- opt [project k v] (get-in project [:jshint k] v))
 
 (defn- config [project] (opt project :config {}))
+(defn- debug [project] (opt project :debug false))
 (defn- config-file [project] (opt project :config-file DEF_CONFIG_FILE))
 (defn- ignore-file [project] (opt project :ignore-file DEF_IGNORE_FILE))
 (defn- include-files [project] (find-files (opt project :includes nil)))
@@ -79,7 +84,7 @@
 
 (defn- sources-list [project args]
   (let [includes (include-files project)]
-    (remove empty? (concat (apply vec args) includes))))
+    (remove empty? (concat (vec args) includes))))
 
 (defn- invoke [project & args]
   (let [root (:root project)
@@ -100,5 +105,5 @@
                           (generate-exclude-files project)
                           (apply invoke project sources)))
     (catch Throwable t
-      (error t)
+      (error t (debug project))
       (main/abort))))
