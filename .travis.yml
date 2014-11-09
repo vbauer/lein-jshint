@@ -2,7 +2,8 @@ language: clojure
 lein: lein2
 before_install:
   - sudo apt-get install nodejs npm
-  - npm config set registry http://registry.npmjs.org/
+  - npm config set registry http://registry.npmjs.org
+  - npm update -q
   - sudo npm install -g jshint
 script: lein2 with-profile dev midje && lein2 uberjar
 jdk:
