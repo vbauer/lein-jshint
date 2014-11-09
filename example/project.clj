@@ -6,11 +6,12 @@
 
 
   ; List of plugins
-  :plugins [[lein-jshint "0.1.5"]]
+  :plugins [[lein-jshint "0.1.6"]]
 
   ; List of hooks
   ; It's used for running JSHint during compile phase
   :hooks [lein-jshint.plugin]
 
   ; JSHint configuration
-  :jshint {:includes "resources/*.js"})
+  :jshint {:debug true
+           :includes "resources/*.js"})
