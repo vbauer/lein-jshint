@@ -82,10 +82,6 @@
         content (joine excludes)]
     (create-tmp-file (ignore-file project) content)))
 
-(defn- sources-list [project args]
-  (let [includes (include-files project)]
-    (remove empty? (concat (vec args) includes))))
-
 (defn- invoke [project & args]
   (let [root (:root project)
         local (str DEF_JSHINT_DIR DEF_JSHINT_CMD)
@@ -100,7 +96,7 @@
     (npm/environmental-consistency project)
     (let [file (config-file project)
           content (generate-config-file project)
-          sources (sources-list project args)]
+          sources (include-files project)]
       (npm/with-json-file file content project
                           (generate-exclude-files project)
                           (apply invoke project sources)))
