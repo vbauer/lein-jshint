@@ -67,8 +67,8 @@
 (defn- debug [project] (opt project :debug false))
 (defn- config-file [project] (opt project :config-file DEF_CONFIG_FILE))
 (defn- ignore-file [project] (opt project :ignore-file DEF_IGNORE_FILE))
-(defn- include-files [project] (find-files (opt project :includes nil)))
-(defn- exclude-files [project] (find-files (opt project :excludes nil)))
+(defn- include-files [project] (find-files (opt project :includes [])))
+(defn- exclude-files [project] (find-files (opt project :excludes [])))
 
 
 ; Internal API: Runner
@@ -82,7 +82,7 @@
         content (joine excludes)]
     (create-tmp-file (ignore-file project) content)))
 
-(defn- invoke [project & args]
+(defn- invoke [project args]
   (let [root (:root project)
         local (str DEF_JSHINT_DIR DEF_JSHINT_CMD)
         cmd (if (.exists (io/file local)) local DEF_JSHINT_CMD)]
@@ -96,10 +96,12 @@
     (npm/environmental-consistency project)
     (let [file (config-file project)
           content (generate-config-file project)
-          sources (include-files project)]
+          sources (include-files project)
+          arguments (if (empty? args) [] (vec args))
+          params (apply concat sources arguments)]
       (npm/with-json-file file content project
                           (generate-exclude-files project)
-                          (apply invoke project sources)))
+                          (invoke project params)))
     (catch Throwable t
       (error t (debug project))
       (main/abort))))

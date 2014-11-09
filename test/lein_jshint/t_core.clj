@@ -20,4 +20,5 @@
 ; Tests
 
 (fact "Check JSHint processor"
-  (nil? (jshint DEF_CONFIG)) => false)
+  (nil? (jshint DEF_CONFIG)) => false
+  (nil? (jshint DEF_CONFIG ["-verbose"])) => false)
