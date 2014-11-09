@@ -6,8 +6,6 @@ before_install:
   - sudo add-apt-repository -y ppa:chris-lea/node.js
   - sudo apt-get update
   - sudo apt-get install -y nodejs
-  - npm config set registry http://registry.npmjs.org
-  - npm update -q
   - sudo npm install -g jshint
 script: lein2 with-profile dev midje && lein2 uberjar
 jdk:
