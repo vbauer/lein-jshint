@@ -1,5 +1,6 @@
 language: clojure
 lein: lein2
+before_install: sudo apt-get install npm && sudo npm install -g jshint
 script: lein2 with-profile dev midje && lein2 uberjar
 jdk:
   - openjdk7
