@@ -6,7 +6,7 @@
 
 
   ; List of plugins
-  :plugins [[lein-jshint "0.1.7"]]
+  :plugins [[lein-jshint "0.1.8"]]
 
   ; List of hooks
   ; It's used for running JSHint during compile phase
