@@ -7,9 +7,9 @@
   :dependencies [[clj-glob "1.0.0" :exclusions [org.clojure/clojure]]
                  [lein-npm "0.4.0" :exclusions [org.clojure/clojure]]]
 
-  :plugins [[jonase/eastwood "0.1.5" :exclusions [org.clojure/clojure]]
+  :plugins [[jonase/eastwood "0.2.1" :exclusions [org.clojure/clojure]]
             [lein-kibit "0.0.8" :exclusions [org.clojure/clojure]]
-            [lein-bikeshed "0.1.8" :exclusions [org.clojure/clojure]]
+            [lein-bikeshed "0.2.0" :exclusions [org.clojure/clojure]]
             [lein-ancient "0.5.5"]]
 
   :profiles {
