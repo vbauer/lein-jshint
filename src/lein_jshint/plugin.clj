@@ -9,7 +9,7 @@
 ; Internal API: Configuration
 
 (def ^:private DEF_JSHINT_DEP "jshint")
-(def ^:private DEF_JSHINT_VER ">=2.5.8")
+(def ^:private DEF_JSHINT_VER ">=2.5.11")
 
 
 ; Internal API: Middlewares
