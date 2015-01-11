@@ -1,4 +1,4 @@
-(defproject lein-jshint "0.1.9"
+(defproject lein-jshint "0.1.10-SNAPSHOT"
   :description "A Leiningen plugin for running JS code through JSHint."
   :url "https://github.com/vbauer/lein-jshint"
   :license {:name "Eclipse Public License"
