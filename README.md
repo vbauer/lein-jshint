@@ -165,6 +165,7 @@ Might also like
 * [lein-plantuml](https://github.com/vbauer/lein-plantuml) - a Leiningen plugin for generating UML diagrams using PlantUML.
 * [lein-coffeescript](https://github.com/vbauer/lein-coffeescript) - a Leiningen plugin for running CoffeeScript compiler.
 * [lein-jslint](https://github.com/vbauer/lein-jslint) - a Leiningen plugin for running javascript code through JSLint.
+* [jabberjay](https://github.com/vbauer/jabberjay) - a simple framework for creating Jabber bots.
 
 
 License
