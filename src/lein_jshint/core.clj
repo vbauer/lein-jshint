@@ -4,21 +4,25 @@
             [leiningen.npm.process :as process]
             [leiningen.core.main :as main]
             [cheshire.core :as json]
-            [org.satta.glob :as glob]
-            [clojure.java.io :as io]
+            [me.raynes.fs :as fs]
+            [citizen.os :as os]
             [clojure.string :as string]))
 
 
 ; Internal API: Common
 
-(defn- to-coll [e]
-  (if (nil? e) [] (if (sequential? e) e [e])))
+(defn- abs-path [f] (.getAbsolutePath f))
 
-(defn- find-files [patterns]
-  (map str (flatten (map glob/glob (to-coll patterns)))))
+(defn- clean-path [p]
+  (if os/windows?
+    (string/replace p "/" "\\")
+    (string/replace p "\\" "/")))
+
+(defn- scan-files [patterns]
+  (set (map abs-path (mapcat fs/glob (map clean-path patterns)))))
 
 (defn- create-tmp-file [file content]
-  (doto (io/file file)
+  (doto (fs/file file)
     (spit content)
     (.deleteOnExit)))
 
@@ -67,8 +71,8 @@
 (defn- debug [project] (opt project :debug false))
 (defn- config-file [project] (opt project :config-file DEF_CONFIG_FILE))
 (defn- ignore-file [project] (opt project :ignore-file DEF_IGNORE_FILE))
-(defn- include-files [project] (find-files (opt project :includes [])))
-(defn- exclude-files [project] (find-files (opt project :excludes [])))
+(defn- include-files [project] (scan-files (opt project :includes [])))
+(defn- exclude-files [project] (scan-files (opt project :excludes [])))
 
 
 ; Internal API: Runner
@@ -85,7 +89,7 @@
 (defn- invoke [project args]
   (let [root (:root project)
         local (str DEF_JSHINT_DIR DEF_JSHINT_CMD)
-        cmd (if (.exists (io/file local)) local DEF_JSHINT_CMD)]
+        cmd (if (.exists (fs/file local)) local DEF_JSHINT_CMD)]
     (process/exec root (cons cmd args))))
 
 
