@@ -149,6 +149,7 @@ Might also like
 * [lein-typescript](https://github.com/vbauer/lein-typescript) - a Leiningen plugin for running TypeScript compiler.
 * [lein-jslint](https://github.com/vbauer/lein-jslint) - a Leiningen plugin for running javascript code through JSLint.
 * [jabberjay](https://github.com/vbauer/jabberjay) - a simple framework for creating Jabber bots.
+* [coderwall-clj](https://github.com/vbauer/coderwall-clj) - a tiny CoderWall client for Clojure.
 
 
 License
