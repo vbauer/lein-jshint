@@ -5,6 +5,7 @@
             [leiningen.core.main :as main]
             [cheshire.core :as json]
             [me.raynes.fs :as fs]
+            [clojure.java.io :as io]
             [clojure.string :as string]))
 
 
@@ -37,6 +38,37 @@
           "Something is wrong:"
           " - installation: npm install jshint -g"
           " - configuration: https://github.com/vbauer/lein-jshint")))
+
+(defn- root [project]
+  (if-let [root (project :npm-root)]
+    (if (keyword? root)
+      (project root) ;; e.g. support using :target-path
+      root)
+    (project :root)))
+
+
+; Internal API: JSON
+
+(defn- json-file
+  [filename project]
+  (io/file (root project) filename))
+
+(defn write-json-file
+  [filename content project]
+  (doto (json-file filename project)
+    (spit content)
+    (.deleteOnExit)))
+
+(defn remove-json-file
+  [filename project]
+  (.delete (json-file filename project)))
+
+(defmacro with-json-file
+  [filename content project & forms]
+  `(try
+     (write-json-file ~filename ~content ~project)
+     ~@forms
+     (finally (remove-json-file ~filename ~project))))
 
 
 ; Internal API: Configuration
@@ -103,7 +135,7 @@
           sources (include-files project)
           arguments (if (empty? args) [] (vec args))
           params (apply concat sources arguments)]
-      (npm/with-json-file file content project
+      (with-json-file file content project
                           (generate-exclude-files project)
                           (invoke project params)))
     (catch Throwable t
