@@ -68,7 +68,6 @@ JSHint rules could be configured with *:config* parameter:
                    :console true
                    "$" true}
          :node true
-         :es5 true
          :eqeqeq true
          ...}
 ```
@@ -103,17 +102,12 @@ Detailed example
            :curly      true    ; Require {} for every new block or scope
            :eqeqeq     true    ; Require triple equals i.e. ===
            :forin      true    ; Tolerate "for in" loops without hasOwnPrototype
-           :immed      true    ; Require immediate invocations to be wrapped in parens
            :latedef    true    ; Prohibit variable use before definition
-           :newcap     true    ; Require capitalization of all constructor functions
            :noarg      true    ; Prohibit use of arguments.caller and arguments.callee
-           :noempty    true    ; Prohibit use of empty blocks
            :nonew      true    ; Prohibit use of constructors for side-effects
            :plusplus   true    ; Prohibit use of "++" & "--"
-           :regexp     true    ; Prohibit "." and ""[^...]"" in regular expressions
            :undef      true    ; Require all non-global vars be declared before usage
            :strict     true    ; Require "use strict" pragma in every file
-           :trailing   true    ; Prohibit trailing whitespaces
            }}
 ```
 Just for Code Maniacs: [JSHint Configuration, Strict Edition](https://gist.github.com/haschek/2595796)
