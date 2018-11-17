@@ -137,6 +137,16 @@ lein jshint --reporter=checkstyle resources/public/js/controllers.js
 See all CLI commands here: http://www.jshint.com/docs/cli/
 
 
+Unit testing
+============
+
+To run unit tests:
+
+```bash
+lein test
+```
+
+
 Thanks to
 =========
 

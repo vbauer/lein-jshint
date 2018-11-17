@@ -1,24 +1,21 @@
 (ns ^{:author "Vladislav Bauer"}
   lein-jshint.t-core
-  (:use [midje.sweet :only [fact]]
-        [midje.util :only [testable-privates]])
-  (:require [lein-jshint.core]))
+  (:require [lein-jshint.core :as core]
+            [clojure.test :as t]))
 
 
 ; Configurations
-
-(testable-privates
-  lein-jshint.core
-    jshint)
 
 (def ^:private DEF_CONFIG
   {:jshint
     {:debug true
      :includes "example/resources/*.js"}})
 
+(def ^:private not-nil? (complement nil?))
+
 
 ; Tests
 
-(fact "Check JSHint processor"
-  (nil? (jshint DEF_CONFIG)) => false
-  (nil? (jshint DEF_CONFIG ["-verbose"])) => false)
+(t/deftest check-jshint-processor
+  (t/is (not-nil? (core/jshint DEF_CONFIG)))
+  (t/is (not-nil? (core/jshint DEF_CONFIG ["-verbose"]))))
